@@ -1,0 +1,160 @@
+<section class="h-100 bg-dark">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+                <div class="card card-registration my-4">
+                    <div class="row g-0">
+                        <form [formGroup]="registerationForm" (ngSubmit)="createaccount()">
+                            <div class="col-xl-6 container-fluid">
+                                <div class="card-body p-md-5 text-black">
+                                    <h3 class="mb-5 text-uppercase">Create Employee</h3>
+                                    <div class="row">
+                                        <!-- <div class="col-md-6 mb-4">
+
+                                            <select class="select">
+                                                <option value="1">Party</option>
+                                                <option value="2">Customer</option>
+                                                <option value="3">Supplier</option>                                               
+                                            </select>
+
+                                        </div>                                         -->
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline">                                                
+                                                <input type="text"   class="form-control form-control-lg"formControlName="fName" placeholder="Enter First Name">
+                                                <label class="form-label" for="form3Example1n">First name</label>                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline">
+                                                <input type="text" id="form3Example1n"  class="form-control form-control-lg"formControlName="lName"  placeholder="Enter Last Name">
+                                                <label class="form-label" for="form3Example1n">Last name</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                           
+                                                <select class="select" id="roleselecter"formControlName="role">
+                                                    <option value="relational">Relational Executive</option>
+                                                    <option value="operational">Operational Executive</option>
+                                                    <option value="credit">Credit Manager</option>                                               
+                                                    <option value="account">Account Manager</option>                                               
+                                                    <option value="administration">Administration</option>                                               
+                                                </select>
+                                                <label class="form-label p-md-2" for="roleselecter"> Role </label>
+                                            </div>                                        
+                                        </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline">
+                                                <input type="text" id="form3Example1m1" class="form-control form-control-lg" formControlName="userName"placeholder="Create User Name">
+                                                <label class="form-label" for="form3Example1m1">User Name</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline">
+                                                <input type="text" id="form3Example1n1" class="form-control form-control-lg"formControlName="password" placeholder="Create User Password" >
+                                                <label class="form-label" for="form3Example1n1">Password</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="form3Example8" class="form-control form-control-lg" formControlName="address"placeholder="Enter Address">
+                                        <label class="form-label" for="form3Example8">Address</label>
+                                    </div>
+                                   
+                                    <!-- <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+
+                                        <h6 class="mb-0 me-4">Gender: </h6>
+
+                                        <div class="form-check form-check-inline mb-0 me-4">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"  value="option1" >
+                                            <label class="form-check-label" >Female</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline mb-0 me-4">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"  value="option2" >
+                                            <label class="form-check-label" >Male</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline mb-0">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"  value="option3" >
+                                            <label class="form-check-label" >Other</label>
+                                        </div>
+
+                                    </div> -->
+
+                                  
+
+                                    <div class="form-outline mb-4">
+                                        <input type="text"  class="form-control form-control-lg datepiker"formControlName="contactNo" placeholder="Enter Contact Number">
+                                        <label class="form-label" >Contact Number</label>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <input type="text"  class="form-control form-control-lg"formControlName="email" placeholder="Enter Email Address" />
+                                        <label class="form-label" >Email ID</label>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        Photo <input type="file" (change)="onselectedFile1($event)"><br><br>
+                                        <img [src]="imageSrc1" height="150"> <br><br>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        Pan <input type="file" (change)="onselectedFile2($event)"><br><br>
+                                    <img [src]="imageSrc2" height="150"> <br><br>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        Aadhar <input type="file" (change)="onselectedFile3($event)"><br><br>
+                                    <img [src]="imageSrc3" height="150"> <br><br>
+                                    </div>
+                  
+                                    <div class="d-flex justify-content-end pt-3">
+                                        
+                                        <button type="submit" class="btn btn-warning btn-lg ms-2">Submit form</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- <table>
+        <td>Name:</td>
+    </table>
+    <form [formGroup]="registerationForm" (ngSubmit)="createaccount()">
+         <div class="row">
+        <div class="col">
+            FirstName: 
+        </div>
+        <div class="col">
+            <input type="text" formControlName="fname">
+            <div *ngIf="registerationForm.controls['fname'].touched && registerationForm.controls['fname'].invalid">
+                <span *ngIf="registerationForm.controls['fname'].hasError('required')" style="color: red">FirstName is Required</span>
+                <span *ngIf="registerationForm.controls['fname'].hasError('minlength')" style="color: red">minimum 5 characters required</span>
+                <span *ngIf="registerationForm.controls['fname'].hasError('maxlength')" style="color: red">maximum 10 characters required</span>
+            </div>
+    </div>
+         </div>
+        LastName: <input type="text" formControlName="lname"><br>
+        Email: <input type="text" formControlName="email"><br>
+        Password: <input type="text" formControlName="password"><br>
+        <div formGroupName="address">
+            cityName: <input type="text" formControlName="cityname"><br>
+            <div
+                *ngIf="registerationForm.controls['address'].get('cityname').touched && registerationForm.controls['address'].get('cityname').invalid">
+                <span *ngIf="registerationForm.controls['address'].get('cityname')!.hasError('required')"
+                    style="color: red">city is Required</span>
+            </div>
+            AreaName: <input type="text" formControlName="areaname"><br>
+        </div>
+        <button type="submit">SUBMIT</button>
+        <button (click)="fillForm()">FillForm</button>
+        <button (click)="resetData()">RESET</button>
+    </form> -->

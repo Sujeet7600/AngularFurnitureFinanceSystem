@@ -1,0 +1,42 @@
+ <div class="container">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Email</th>
+            <th>Photo</th>
+            <th>Pan</th>
+            <th>Aadhar</th>            
+          </tr>
+        </thead>
+        <tbody *ngIf=retrievedDoc>
+          <tr *ngFor="let d of retrievedDoc">
+            <td>{{d.id}}</td>
+            <td>{{d.userName}}</td>
+            <td>{{d.role}}</td> 
+            <td>{{d.email}}</td>          
+            <td> <a (click)="openModalI(viewphoto,d.photo)"> <i class="fa fa-image"></i></a> </td>
+            <td> <a (click)="openModalI(viewphoto,d.pan)"> <i class="fa fa-image"></i></a> </td>
+            <td> <a (click)="openModalI(viewphoto,d.aadhar)"> <i class="fa fa-image"></i></a> </td>    
+          </tr>
+        </tbody>
+      </table>
+  </div>
+  <ng-template #viewphoto let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="editProfileLabel">Image</h5>
+      <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close"><i class="fa fa-times"
+          aria-hidden="true"></i></button>
+
+    </div>
+
+    <div class="modal-body">
+      <img [src]="'data:image/jpeg;base64,'+[image]" height="150">
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Close</button>
+
+    </div>
+  </ng-template>

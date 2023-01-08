@@ -1,0 +1,147 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+
+        <th>Loan Id</th>
+        <th>loan Status</th>
+        <th>Required Loan Amount</th>
+        <th>customer Name</th>
+        <th>Contact Number</th>
+        <th>Photo</th>
+        <th>Pan</th>
+        <th>Aadhar</th>
+        <th>Document</th>
+        <th>Proceed</th>
+      </tr>
+    </thead>
+    <tbody *ngIf=retrievedDoc>
+      <tr *ngFor="let d of retrievedDoc">
+
+
+        <td>{{d.loanId}}</td>
+        <td>{{d.loanStatus | loanStatus}}</td>
+        <td>{{d.requiredLoanAmount}}</td>
+        <td>{{d.customer.customerName}}</td>
+        <td>{{d.customer.customerContactNumber}}</td>
+        <td> <a (click)="openModalI(viewphoto,d.customer.photo)"> <i class="fa fa-image"></i></a> </td>
+        <td> <a (click)="openModalI(viewphoto,d.customer.panCopy)"> <i class="fa fa-image"></i></a> </td>
+        <td> <a (click)="openModalI(viewphoto,d.customer.aadharCopy)"> <i class="fa fa-image"></i></a> </td>
+        <td> <button class="btn btn-warning" (click)="openModal(editProfileModal,d)"> <i class="fa fa-edit"></i>Add
+            Doc</button> </td>
+        <!-- <Div *ngIf="d.loanStatus==3>          
+          </Div> -->
+        <td> 
+          <button type=" submit" *ngIf=" d.loanStatus==3 " class="btn btn-primary" (click)="Proceed(d,4)" >Proceed</button>
+          <button type=" submit" *ngIf=" d.loanStatus==5" class="btn btn-primary" (click)="Proceed(d,6)" >Proceed</button>
+        <button type="submit"  *ngIf="d.loanStatus!==3 && d.loanStatus!==5" [disabled]="true" class="btn btn-warning" >Processing</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <ng-template #viewphoto let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="editProfileLabel">Image</h5>
+      <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close"><i class="fa fa-times"
+          aria-hidden="true"></i></button>
+
+    </div>
+
+    <div class="modal-body">
+      <img [src]="'data:image/jpeg;base64,'+[image]" height="150">
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Close</button>
+
+    </div>
+  </ng-template>
+
+  <ng-template #editProfileModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="editProfileLabel">Document</h5>
+      <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close"><i class="fa fa-times"
+          aria-hidden="true"></i></button>
+    </div>
+    <div class="modal-body">
+
+      <div class="form-group">
+        <label for="formFile" class="control-label col-sm-3">PAN</label>
+        <div class="col-sm-9">
+          <input class="form-control" (change)="onselectedFile1($event)" type="file" id="formFile">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="formFile" class="control-label col-sm-3">Aadhar</label>
+        <div class="col-sm-9">
+          <input class="form-control" (change)="onselectedFile2($event)" type="file" id="formFile">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="formFile" class="control-label col-sm-3">Rent Aggrement</label>
+        <div class="col-sm-9">
+          <input class="form-control" (change)="onselectedFile3($event)" type="file" id="formFile">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="formFile" class="control-label col-sm-3">Photograph</label>
+        <div class="col-sm-9">
+          <input class="form-control" (change)="onselectedFile4($event)" type="file" id="formFile">
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label for="formFile" class="control-label col-sm-3">Salary Slip</label>
+        <div class="col-sm-9">
+          <input class="form-control" (change)="onselectedFile6($event)" type="file" id="formFile">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="formFile" class="control-label col-sm-3">Signature</label>
+        <div class="col-sm-9">
+          <input class="form-control" (change)="onselectedFile7($event)" type="file" id="formFile">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="formFile" class="control-label col-sm-3">Bank Passbook</label>
+        <div class="col-sm-9">
+          <input class="form-control" (change)="onselectedFile8($event)" type="file" id="formFile">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="formFile" class="control-label col-sm-3">Cancelled Check</label>
+        <div class="col-sm-9">
+          <input class="form-control" (change)="onselectedFile9($event)" type="file" id="formFile">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="formFile" class="control-label col-sm-3">PDC Check</label>
+        <div class="col-sm-9">
+          <input class="form-control" (change)="onselectedFile10($event)" type="file" id="formFile">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="formFile" class="control-label col-md-4">Guarator Photograph</label>
+        <div class="col-sm-9">
+          <input class="form-control" (change)="onselectedFile11($event)" type="file" id="formFile">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="formFile" class="control-label col-md-4">Sanction Letter</label>
+        <div class="col-sm-9">
+          <input class="form-control" (change)="onselectedFile5($event)" type="file" id="formFile">
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" (click)="onSubmit(l.loanId)">Save</button>
+    </div>
+  </ng-template>

@@ -1,0 +1,247 @@
+<section class="h-100 bg-dark">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+                <div class="card card-registration my-4">
+                    <div class="row g-0">
+                        <form [formGroup]="registerForm" (ngSubmit)="createaccount()">
+                            <div class="col-xl-6 container-fluid">
+                                <div class="card-body p-md-5 text-black">
+                                    <h4>Customer Information</h4>
+                                    <div formGroupName="customer">
+
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-outline">
+                                                    <input type="text" class="form-control form-control-lg"
+                                                        formControlName="customerName" placeholder="Enter Name">
+                                                    <label class="form-label" for="form3Example1n">Customer Name</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-outline">
+                                                    <input type="text" id="form3Example1n"
+                                                        class="form-control form-control-lg" type="email"
+                                                        formControlName="customerEmailId" placeholder="Enter Email">
+                                                    <label class="form-label" for="form3Example1n">Email</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-outline">
+                                                    <input type="number" formControlName="customerContactNumber"
+                                                        placeholder="Enter Contact No."
+                                                        class="form-control form-control-lg">
+                                                    <label class="form-label" for="form3Example1n">Contact No.</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-outline">
+                                                    <input type="text" formControlName="status"
+                                                        placeholder="Enter Status" class="form-control form-control-lg">
+                                                    <label class="form-label" for="form3Example1n">Customer
+                                                        Status</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-outline">
+                                                    <input type="text" formControlName="customerLocalAddress"
+                                                        placeholder="Enter Local Address"
+                                                        class="form-control form-control-lg">
+                                                    <label class="form-label" for="form3Example1n">Local Address</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-outline">
+                                                    <input type="number" formControlName="customerLocalPincode"
+                                                        placeholder="Enter Local Pincode"
+                                                        class="form-control form-control-lg">
+                                                    <label class="form-label" for="form3Example1n">Local Pincode</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-outline">
+                                                    <input type="text" formControlName="customerPermanantAddress"
+                                                        placeholder="Enter Permanant address"
+                                                        class="form-control form-control-lg">
+                                                    <label class="form-label" for="form3Example1n">Permanant
+                                                        address</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-outline">
+                                                    <input type="number" formControlName="customerPermanantPincode"
+                                                        placeholder="Enter Permanant Pincode"
+                                                        class="form-control form-control-lg">
+                                                    <label class="form-label" for="form3Example1n">Permanant
+                                                        Pincode</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-outline">
+                                                    <input type="text" formControlName="panNo"
+                                                        placeholder="Enter PAN No" class="form-control form-control-lg">
+                                                    <label class="form-label" for="form3Example1n">PAN No.</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-outline">
+                                                    <input type="number" formControlName="aadharNo"
+                                                        placeholder="Enter Aadhar No."
+                                                        class="form-control form-control-lg">
+                                                    <label class="form-label" for="form3Example1n">Aadhar No.</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-outline">
+                                                    <input type="text" formControlName="cmRemark"
+                                                        placeholder="Enter Remark" class="form-control form-control-lg">
+                                                    <label class="form-label" for="form3Example1n">Remark</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-outline">
+                                                    <input type="text" formControlName="note" placeholder="Enter Notes"
+                                                        class="form-control form-control-lg">
+                                                    <label class="form-label" for="form3Example1n">Notes</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="form-group">
+                                            <label for="formFile" class="control-label col-sm-3">PAN</label>
+                                            <div class="col-sm-9">
+                                                <input class="form-control" (change)="onselectedFile1($event)"
+                                                    type="file" id="formFile">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="formFile" class="control-label col-sm-3">Aadhar</label>
+                                            <div class="col-sm-9">
+                                                <input class="form-control" (change)="onselectedFile2($event)"
+                                                    type="file" id="formFile">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="formFile" class="control-label col-sm-3">Rent Aggrement</label>
+                                            <div class="col-sm-9">
+                                                <input class="form-control" (change)="onselectedFile3($event)"
+                                                    type="file" id="formFile">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="formFile" class="control-label col-sm-3">Photograph</label>
+                                            <div class="col-sm-9">
+                                                <input class="form-control" (change)="onselectedFile4($event)"
+                                                    type="file" id="formFile">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr class="solid">
+
+                                    <!-- LOAN INFORMATION -->
+                                    <h4>Loan Information</h4>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline">
+                                                <input type="number" formControlName="requiredLoanAmount"
+                                            placeholder="Enter Required Amount" class="form-control form-control-lg">
+                                                    <label class="form-label" for="form3Example1m1">Required Amount</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline">
+                                                <input type="number" formControlName="requiredLoanAmount"
+                                                placeholder="Enter Quotation Amount"
+                                                    class="form-control form-control-lg">
+                                                    <label class="form-label" for="form3Example1m1">Quotation Amount</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                  
+                                    <div class="form-group">
+                                        <label for="formFile" class="control-label col-sm-3">Salary Slip</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" (change)="onselectedFile6($event)" type="file"
+                                                id="formFile">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="formFile" class="control-label col-sm-3">Quotaion Document</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" (change)="onselectedFile7($event)" type="file"
+                                                id="formFile">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="formFile" class="control-label col-sm-3">Bank Passbook</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" (change)="onselectedFile8($event)" type="file"
+                                                id="formFile">
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <label for="formFile" class="control-label col-sm-3">Cancelled Check</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" (change)="onselectedFile9($event)" type="file"
+                                                id="formFile">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="formFile" class="control-label col-sm-3">PDC Check</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" (change)="onselectedFile10($event)" type="file"
+                                                id="formFile">
+                                        </div>
+                                    </div> -->
+
+                                    <!-- <div class="form-group">
+                                        <label for="formFile" class="control-label col-sm-3">Guarantor Photograph</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" (change)="onselectedFile11($event)" type="file"
+                                                id="formFile">
+                                        </div>
+                                    </div> -->
+
+
+                                    <hr class="solid">
+
+
+
+
+                                    <div class="d-flex justify-content-end pt-3">
+                                        <button type="submit" class="btn btn-primary btn-block">APPLY</button>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

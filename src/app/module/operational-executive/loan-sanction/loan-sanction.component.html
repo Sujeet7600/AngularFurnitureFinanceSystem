@@ -1,0 +1,148 @@
+<form #invoiceForm="ngForm">
+    <div class="container-fluid pt-2 mb-5">
+        <div class="row">
+            <div class="col-md-10">
+                <input type="number" name="loanNo"[(ngModel)]=loanId placeholder="Enter Loan ID">
+                <input type="button" (click)="findLoan()" value="Find">
+                <div class="card border-secondary">
+                    <div class="card-body">
+                        <h4 class="card-title">Customer Details</h4>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" name="name" id="name"
+                                        
+                                        [(ngModel)]="sanction.customer.customerName"  >
+                                        <!-- [ngClass]="{'is-invalid': invoiceForm.submitted && CustName.invalid}" -->
+                                    </div>
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <textarea class="form-control" name="address" id="address" row="3"
+                                        
+                                        [(ngModel)]="sanction.customer.customerLocalAddress"  ></textarea>
+                                        <!-- [ngClass]="{'is-invalid': invoiceForm.submitted && Address.invalid}" -->
+                                    </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="email">Email ID</label>
+                                    <input type="email" class="form-control" name="email" id="email"
+                                        [(ngModel)]="sanction.customer.customerEmailId" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactNo">Contact No.</label>
+                                    <input type="number" class="form-control" name="contactNo" id="contactNo"
+                                       
+                                        [(ngModel)]="sanction.customer.customerContactNumber" >
+                                        <!-- [ngClass]="{'is-invalid': invoiceForm.submitted && ContactNo.invalid}" -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-secondary mt-2">
+                    <div class="card-body">
+                        <h4 class="card-title d-flex justify-content-between">Loan Details</h4>
+                        <input type="number" class="form-control" name="interest" [(ngModel)]="sanction.rateOfInterest" />Intrest Rate<br>
+                        <input type="number" class="form-control" name="LoanAmount" [(ngModel)]="sanction.loanAmount" />Loan Amount<br>
+                    </div>
+                </div>
+                <div class="card border-secondary mt-2">
+                    <div class="card-body">
+                        <h4 class="card-title">Additional Details</h4>
+                        <div class="form-group">
+                            <textarea class="form-control" name="additionalDetails" rows="3"
+                                [(ngModel)]="sanction.customer.cmRemark"></textarea>
+                        </div>
+                    </div>
+                </div>
+  
+            </div>
+            <div class="col-md-2" style="border-left: 1px solid #000; ">
+                <h4 style="text-align: center">SANCTION LETTER</h4>
+       
+               
+                <button type="button"  *ngIf=" sanction.loanId!=0 " class="btn btn-primary btn-lg btn-block"
+                    (click)=" generatePDF('download') ">Download</button>
+                    
+                    <br><br>
+                <button type="button" *ngIf=" sanction.loanId!=0 " class="btn btn-primary btn-lg btn-block"
+                    (click)=" generatePDF('print')">Print
+                    </button><br><br>
+                <button type="submit"  *ngIf=" sanction.loanId!=0 "class="btn btn-primary btn-lg btn-block"
+                    (click)=" generatePDF()">Open
+                    </button><br><br>
+                    <button class="btn btn-warning" *ngIf=" sanction.loanId!=0 "(click)="openModal(emailModal)"> <i class="fa fa-edit"></i>Send Mail</button>
+                
+            </div>           
+        
+           
+        </div>
+    </div>
+  </form>
+  <ng-template #emailModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="editProfileLabel">Send Mail</h5>
+      <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close"><i class="fa fa-times"
+          aria-hidden="true"></i></button>
+
+    </div>
+
+    <div class="modal-body">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Data</th>
+          </tr>
+
+        </thead>
+        <tbody>
+
+          <tr>
+            <td><label for="formFile" class="control-label col-sm-3">customer Email </label></td>
+            <td>
+              <div class="col-sm-9">
+                <input type="text" [(ngModel)]="sanction.customer.customerEmailId" name="Email" disabled>
+              </div>
+            </td>
+          </tr>
+
+
+          <tr>
+            <td>
+              <label for="formFile" class="control-label col-sm-3">Subject </label>
+            </td>
+            <td>                              
+                <div class="col-sm-9">
+                  <input type="text" [(ngModel)]="emailData.subject" name="subject" placeholder="Enter subject">
+                </div>    
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="formFile" class="control-label col-sm-3"> Discription</label>
+            </td>
+            <td>                              
+                <div class="col-sm-9">
+                  <textarea rows="4" cols="50" type="text" [(ngModel)]="emailData.textBody" name="Discription" placeholder="Enter Discription"></textarea>
+                </div>    
+            </td>
+          </tr>
+          </tbody>
+          </table>
+          <div class="form-group">
+            <label for="formFile" class="control-label col-sm-3">Sanction Letter</label>
+            <div class="col-sm-9">
+                <input class="form-control" (change)="onselectedFile1($event)"
+                    type="file" id="formFile">
+            </div>
+        </div>
+     
+    </div>
+    <div class="modal-footer">
+    
+      <button type="submit" class="btn btn-primary" (click)="sanctionMail(sanction,emailData)">Send</button>
+    </div>
+  </ng-template>

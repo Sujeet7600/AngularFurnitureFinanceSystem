@@ -1,0 +1,228 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+
+        <th>Loan Id</th>
+        <th>loan Status</th>
+        <th>Required Loan Amount</th>
+        <th>customer Name</th>
+        <th>Contact Number</th>
+        <th>Photo</th>
+        <th>Pan</th>
+        <th>Aadhar</th>
+        <th>Cibil</th>
+        <th>Credit</th>
+        <th>Aprove</th>
+        <th>Reject</th>
+      </tr>
+    </thead>
+    <tbody *ngIf=retrievedDoc>
+      <tr *ngFor="let d of retrievedDoc">
+
+
+        <td>{{d.loanId}}</td>
+        <td>{{d.loanStatus|loanStatus }}</td>
+        <td>{{d.requiredLoanAmount}}</td>
+        <td>{{d.customer.customerName}}</td>
+        <td>{{d.customer.customerContactNumber}}</td>
+        <td> <a (click)="openModalI(viewphoto,d.customer.photo)"> <i class="fa fa-image"></i></a> </td>
+        <td> <a (click)="openModalI(viewphoto,d.customer.panCopy)"> <i class="fa fa-image"></i></a> </td>
+        <td> <a (click)="openModalI(viewphoto,d.customer.aadharCopy)"> <i class="fa fa-image"></i></a> </td>
+        <td> <a (click)="openModal(editProfileModal,d)"> {{d.customer.cibilScore+" "}}<i class="fa fa-edit"></i></a>
+        </td>
+        <td> <button class="btn btn-warning" (click)="openModal(creditProfileModal,d)"> <i
+              class="fa fa-edit"></i>Credit</button> </td>
+              <td> 
+                <button type=" submit" *ngIf=" d.loanStatus==2" class="btn btn-primary" (click)="Proceed(d,3)" >Proceed</button>
+              <button type="submit"  *ngIf="d.loanStatus!=2" [disabled]="true" class="btn btn-warning" >Processing</button>
+              </td>
+        <td> <button type="submit" class="btn btn-danger" (click)="Proceed(d,9)">Reject</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+
+
+
+  <ng-template #viewphoto let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="editProfileLabel">Image</h5>
+      <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close"><i class="fa fa-times"
+          aria-hidden="true"></i></button>
+
+    </div>
+
+    <div class="modal-body">
+      <img [src]="'data:image/jpeg;base64,'+[image]" height="150">
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Close</button>
+
+    </div>
+  </ng-template>
+
+  <ng-template #editProfileModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="editProfileLabel">Cibil Score</h5>
+      <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close"><i class="fa fa-times"
+          aria-hidden="true"></i></button>
+
+    </div>
+
+    <div class="modal-body">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Cibil</th>
+          </tr>
+
+        </thead>
+        <tbody>
+
+          <tr>
+            <td><label for="formFile" class="control-label col-sm-3">customerName </label></td>
+            <td>
+              <div class="col-sm-9">
+                <input type="text" [(ngModel)]="l.customer.customerName" name="customer Name">
+              </div>
+            </td>
+          </tr>
+
+
+          <tr>
+            <td>
+              <label for="formFile" class="control-label col-sm-3">cibilScore </label>
+            </td>
+            <td>                              
+                <div class="col-sm-9">
+                  <input type="number" [(ngModel)]="l.customer.cibilScore" name="cibil Score" placeholder="Enter Cibil Score">
+                </div>    
+            </td>
+          </tr>
+          </tbody>
+          </table>
+         
+          
+     
+    </div>
+    <div class="modal-footer">
+    
+      <button type="submit" class="btn btn-primary" (click)="onSubmit(l)">Save</button>
+    </div>
+  </ng-template>
+
+  <ng-template #creditProfileModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="editProfileLabel">Credit</h5>
+      <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close"><i class="fa fa-times"
+          aria-hidden="true"></i></button>
+
+    </div>
+    <div class="modal-body">
+     
+      <hr class="solid">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Value</th>
+          </tr>
+  
+        </thead>
+        <tbody>
+          <tr>
+            <td><label for="formFile" class="control-label col-sm-3">RequiredLoanAmount </label></td>
+            <td>
+              <div class="col-sm-9">
+                <input type="number" disabled [(ngModel)]="l.requiredLoanAmount" name="requiredLoanAmount"
+                  placeholder="Required Loan Amount">
+              </div>
+            </td>
+          </tr>
+
+
+          <tr>
+            <td>
+              <label for="formFile" class="control-label col-sm-3">loanAmount </label>
+            </td>
+            <td>                              
+                <div class="col-sm-9">
+                  <input type="number" [(ngModel)]="l.loanAmount" name="loanAmount" placeholder="loan Amount">
+                </div>    
+            </td>
+          </tr>
+
+
+
+  
+          <tr>
+            <td>
+              <label for="formFile" class="control-label col-mb-3">Tenure In Year </label>
+            </td>
+            <td>                              
+                <div class="col-sm-9">
+                  <input type="number" [(ngModel)]="l.tenure" name="tenure" placeholder="Tenure In Year">
+                </div>    
+            </td>
+          </tr>
+          
+          
+          <tr>
+            <td>
+              <label for="formFile" class="control-label col-mb-3">Rate Of Interest </label>
+            </td>
+            <td>                              
+                <div class="col-sm-9">
+                  <input type="number" [(ngModel)]="l.rateOfInterest" name="rateOfInterest"
+                    placeholder="Rate Of Interest">
+                </div>    
+            </td>
+          </tr>
+                  
+          <tr>
+            <td>
+              <label for="formFile" class="control-label col-mb-3">EMI Value </label>
+            </td>
+            <td>                              
+                <div class="col-sm-9">
+                  <input type="number" disabled [(ngModel)]="l.emi" name="emi"
+                    placeholder="EMI">
+                </div>    
+            </td>
+          </tr>
+                  
+          <tr>
+            <td>
+              <label for="formFile" class="control-label col-mb-3">Total Repay Amount</label>
+            </td>
+            <td>                              
+                <div class="col-sm-9">
+                  <input type="number" disabled [(ngModel)]="repayAmt" name="emi"
+                    placeholder="Total Repay Amount">
+                </div>    
+            </td>
+          </tr>
+                     
+          <tr>
+            <td>
+              <label for="formFile" class="control-label col-sm-3">ProcessingCharge </label>
+            </td>
+            <td>                              
+                <div class="col-sm-9">
+                  <input type="number" [(ngModel)]="l.processingCharge" name="processingCharge"
+                    placeholder="Processing Charge">
+                </div>    
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" (click)="onSubmit(l)">Save</button>
+    </div>
+  </ng-template>

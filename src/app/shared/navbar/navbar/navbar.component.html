@@ -1,0 +1,118 @@
+
+<nav class="navbar navbar-expand navbar-dark bg-dark px-2">
+  <div class="side-nav-button p-2 me-3 text-light" (click)="sideBar()">
+    <i class="fa fa-bars "></i>
+  </div>
+
+  <a class="navbar-brand px-4 " href="#"> InteriorFinCom</a>
+  
+  <div class="navbar-collapse">
+    <button class="btn btn-warning" (click)="openModal(creditProfileModal)"> <i
+      class="fa fa-calculator"></i>EMI</button>
+  </div>
+  <!-- <form class="d-flex me-5">
+    <input class="form-control me-2" type="Search" placeholder="Search" >
+    <button class="btn btn-outline-light" type="submit">Search</button>
+  </form> -->
+  <div class="spacer"></div>
+  <div class="profile-log dropstart ">
+    <button class=" btn btn-outline-light dropdown-toggle p-2 me-5 " data-bs-toggle="dropdown">
+      <i class="fa fa-user"></i>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-dark">
+      <!-- <li><a href="#" class="dropdown-item">sign up</a></li>
+      <li><a href="#" class="dropdown-item">sign in</a></li> -->
+      <li><a href="#" class="dropdown-item">Your Profile</a></li>
+      <li><a href="#" class="dropdown-item">Log Out</a></li>
+    </ul>
+
+  </div>
+</nav>
+<ng-template #creditProfileModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="editProfileLabel">EMI Calculator</h5>
+    <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close"><i class="fa fa-times"
+        aria-hidden="true"></i></button>
+
+  </div>
+  <div class="modal-body">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Value</th>
+        </tr>
+
+      </thead>
+      <tbody>
+
+        <tr>
+          <td><label for="formFile" class="control-label col-mb-3">Loan Amount
+
+          </label>
+
+        </td>
+          <td>
+            <div class="col-sm-9">
+              <input type="number" [(ngModel)]="principal" name="requiredLoanAmount"
+                placeholder="Required Loan Amount">
+            </div>
+          </td>
+        </tr>
+
+
+        <tr>
+          <td>
+            <label for="formFile" class="control-label col-mb-3">Tenure In Year </label>
+          </td>
+          <td>                              
+              <div class="col-sm-9">
+                <input type="number" [(ngModel)]="time" name="tenure" placeholder="Tenure In Year">
+              </div>    
+          </td>
+        </tr>
+           
+        <tr>
+          <td>
+            <label for="formFile" class="control-label col-mb-3">Rate Of Interest </label>
+          </td>
+          <td>                              
+              <div class="col-sm-9">
+                <input type="number" [(ngModel)]="rate" name="rateOfInterest"
+                  placeholder="Rate Of Interest">
+              </div>    
+          </td>
+        </tr>
+           
+                
+        <tr>
+          <td>
+            <label for="formFile" class="control-label col-mb-3">EMI Value </label>
+          </td>
+          <td>                              
+              <div class="col-sm-9">
+                <input type="number" disabled [(ngModel)]="emi" name="emi"
+                  placeholder="EMI">
+              </div>    
+          </td>
+        </tr>
+                
+        <tr>
+          <td>
+            <label for="formFile" class="control-label col-mb-3">Total Repay Amount</label>
+          </td>
+          <td>                              
+              <div class="col-sm-9">
+                <input type="number" disabled [(ngModel)]="repayAmt" name="emi"
+                  placeholder="Total Repay Amount">
+              </div>    
+          </td>
+        </tr>
+           
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" (click)="emi_calculator(principal,rate,time)">Calculate</button>
+  </div>
+</ng-template>
